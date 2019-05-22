@@ -13,7 +13,9 @@ class Migration_001(rose.upgrade.MacroUpgrade):
         self.add_setting(config, ['namelist:foo'])
         self.add_setting(config, ['namelist:foo', 'foo'], '.false.')
 
+        derived_value = self.get_setting_value(config, ['env', 'a'])
+
         self.add_setting(config, ['namelist:bar'])
-        self.add_setting(config, ['namelist:bar', 'bar'], '1')
+        self.add_setting(config, ['namelist:bar', 'bar'], derived_value)
 
         return config, self.reports
